@@ -26,6 +26,16 @@ Resources:
       Environment:
         Variables:
           DDB_TN: "Message-vcrddkpzkfftfm3yxnmk54lcwi-dev"
+      FunctionUrlConfig:
+        AuthType: AWS_IAM
+  
+  LambdaFunctionUrlPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref HelloWorldFunction
+      Action: "lambda:InvokeFunctionUrl"
+      Principal: arn:aws:iam::741448939010:user/szipan  # Replace with your IAM role or user ARN
+      FunctionUrlAuthType: AWS_IAM
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
